@@ -1,0 +1,82 @@
+/* template.unlikeacademy.it · componenti della libreria sopra lo stile comune (stile.css, stessa base di aigratis e cervello) */
+
+/* il blu comune (#227CC0) con testo bianco piccolo arriva a 4,46:1: qui lo scuriamo un filo per stare sopra 4,5 */
+:root{--blu:#1F74B5}
+
+/* vetrina nell'apertura: fino a 3 miniature, la più recente sopra */
+.vetrina{position:relative;display:grid;place-items:center;padding:30px 18px 58px;min-width:0}
+.vetrina .v{grid-area:1/1;position:relative;width:min(72%,300px);background:#fff;padding:9px 9px 34px;border-radius:6px;box-shadow:var(--ombra);margin:0}
+.vetrina .v::before{content:'';position:absolute;top:-17px;left:50%;width:34px;height:34px;margin-left:-17px;background:url(deco/puntina.png) center/contain no-repeat;z-index:4}
+.vetrina .v img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 12%;border-radius:3px}
+.vetrina .v span{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--mano);font-size:1.15rem;color:var(--ink);line-height:1}
+.vetrina .v:nth-child(1){rotate:-3deg;z-index:3}
+.vetrina .v:nth-child(2){rotate:5deg;z-index:2}
+.vetrina .v:nth-child(3){rotate:-8deg;z-index:1}
+.vetrina[data-n="2"] .v{width:min(60%,260px)}
+.vetrina[data-n="2"] .v:nth-child(1){translate:-18% 0}
+.vetrina[data-n="2"] .v:nth-child(2){translate:20% 6%}
+.vetrina[data-n="3"] .v{width:min(54%,240px)}
+.vetrina[data-n="3"] .v:nth-child(1){translate:-4% 0}
+.vetrina[data-n="3"] .v:nth-child(2){translate:46% 5%}
+.vetrina[data-n="3"] .v:nth-child(3){translate:-48% 7%}
+.vetrina .sticker{left:2px;bottom:6px;z-index:5}
+
+/* elenco dei formati e griglie */
+.formati{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.formati a{font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:100px;padding:7px 14px;line-height:1.2}
+.formati a b{color:var(--fucsia);margin-left:4px}
+.formati a:hover{border-color:var(--fucsia)}
+.blocco{margin-top:44px;scroll-margin-top:18px}
+.blocco:first-of-type{margin-top:32px}
+.bt{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px}
+.bt h3{font-weight:900;font-size:clamp(1.3rem,2.6vw,1.65rem);letter-spacing:-.045em;line-height:1.1}
+.bt .n{font-size:13px;font-weight:800;color:#fff;background:var(--fucsia);border-radius:100px;padding:2px 10px;line-height:1.5}
+.bt p{flex-basis:100%;font-size:15px;color:var(--gray)}
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(var(--min,220px),100%),1fr));gap:18px;margin-top:16px;align-items:stretch}
+.griglia>*{min-width:0}
+.vuoto{margin-top:24px;font-weight:700;color:var(--ink)}
+
+/* card */
+.tcard{display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--ombra-card);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 16px 28px -18px rgba(59,54,56,.5)}
+.th{position:relative;display:block;aspect-ratio:var(--r,3/4);background:var(--carta);overflow:hidden}
+.th img{width:100%;height:100%;object-fit:cover}
+.th .tag{position:absolute;left:10px;top:10px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:#fff;border-radius:100px;padding:4px 10px 3px;line-height:1.3;box-shadow:0 2px 6px rgba(59,54,56,.18)}
+.th .tag.nuovo{left:auto;right:10px;background:var(--fucsia);color:#fff}
+.th .tag.prova{left:auto;right:10px;background:var(--ink);color:#fff}
+.th .tag.chiuso{left:10px;top:auto;bottom:10px;background:var(--ink);color:#fff}
+.tcard.chiuso .th img{filter:saturate(.75)}
+.tb{display:flex;flex-direction:column;gap:6px;padding:14px 16px 16px;flex:1}
+.tb h4{font-weight:800;font-size:1.05rem;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
+.tb p{font-size:14.5px;line-height:1.45}
+.btn.mini{margin-top:auto;padding:12px 18px;font-size:15px;width:100%;box-shadow:3px 4px 0 rgba(34,124,192,.38)}
+.tb p+.btn.mini{margin-top:10px}
+.btn.mini.btn-linea{box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* accenti della sezione Club */
+.team.academy .box{border-color:rgba(200,50,31,.35)}
+.team.academy .ic{background:#FBE9E5;color:var(--fucsia)}
+.team .btns .btn{width:auto}
+.team .btns{align-items:center}
+
+@media(max-width:900px){
+  .vetrina{max-width:520px;margin-inline:auto;width:100%}
+}
+@media(max-width:640px){
+  .griglia{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .griglia.larga{grid-template-columns:1fr}
+  .th .tag{left:7px;top:7px;font-size:10.5px;padding:3px 8px 2px}
+  .th .tag.nuovo,.th .tag.prova{right:7px;left:auto}
+  .tb{padding:11px 12px 13px}
+  .tb h4{font-size:.98rem}
+  .tb p{font-size:13.5px}
+  .btn.mini{padding:11px 12px;font-size:14px}
+  .btn.mini .ar{display:none}
+  .vetrina{padding:26px 8px 54px}
+  .vetrina[data-n="3"] .v{width:min(50%,220px)}
+  .vetrina[data-n="3"] .v:nth-child(2){translate:38% 5%}
+  .vetrina[data-n="3"] .v:nth-child(3){translate:-38% 7%}
+  .vetrina[data-n="2"] .v{width:min(56%,240px)}
+  .team .btns .btn{width:100%}
+}
+.note.poche{margin-top:32px}
